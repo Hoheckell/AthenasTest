@@ -10,11 +10,15 @@ Executar os comandos a seguir.
 <p>
 <h4>Comandos</h4>
 <code>composer update</code><br>
-<code>php artisan ui vue</code><br>
 <code>npm install</code><br>
 <code>php artisan migrate</code><br>
 <code>php artisan db:seed --class=CategoriaSeeder</code><br>
 <code>php artisan db:seed --class=PessoaSeeder</code><br>
+<h5>Para executar o projeto</h5>
+<code>php artisan key:generate</code><br>
+<code>npm run dev</code><br>
+<code>php artisan serve</code><br>
+
 </p>
 
 
