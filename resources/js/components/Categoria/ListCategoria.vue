@@ -56,7 +56,6 @@ export default {
                 .then(response => {
                     let i = this.categorias.map(data => data.codigo).indexOf(codigo);
                     this.categorias.splice(i, 1)
-                    console.log(response.status);
                     if(response.status == 200) {
                         this.$notify(
                             {

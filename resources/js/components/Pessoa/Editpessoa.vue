@@ -98,7 +98,6 @@ export default {
             }
         },
         changePessoaCategoria (event) {
-            console.log(event.target.options[event.target.options.selectedIndex].value);
             this.pessoa.categoria_codigo = event.target.options[event.target.options.selectedIndex].value
         }
     }
