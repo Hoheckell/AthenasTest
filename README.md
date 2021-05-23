@@ -11,6 +11,7 @@ Executar os comandos a seguir.
 <h4>Comandos</h4>
 <code>composer update</code><br>
 <code>npm install</code><br>
+<em>[Nesta parte o arquivo .env deve estar configurado]</em><br>
 <code>php artisan migrate</code><br>
 <code>php artisan db:seed --class=CategoriaSeeder</code><br>
 <code>php artisan db:seed --class=PessoaSeeder</code><br>
