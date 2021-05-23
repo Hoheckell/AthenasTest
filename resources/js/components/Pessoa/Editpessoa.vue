@@ -64,11 +64,12 @@ export default {
     },
     methods: {
         updatePessoa(codigo) {
-            this.axios
-                .patch('http://localhost:8000/api/pessoa/'+codigo,this.pessoa)
-                .then(response => {
-                    if(response.status == 200){
-                        this.$router.push({ name: 'pessoas' });
+            if(this.pessoa.nome != undefined && this.pessoa.nome != undefined && this.pessoa.categoria_codigo != undefined) {
+                this.axios
+                    .patch('http://localhost:8000/api/pessoa/' + codigo, this.pessoa)
+                    .then(response => {
+                        if (response.status == 200) {
+                            this.$router.push({name: 'pessoas'});
                             this.$notify(
                                 {
                                     text: "Pessoa alterada com sucesso!",
@@ -76,7 +77,7 @@ export default {
                                 },
                                 3000
                             );
-                        }else{
+                        } else {
                             this.$notify(
                                 {
                                     text: "Não foi possível concluir a alteração",
@@ -85,7 +86,16 @@ export default {
                                 3000
                             );
                         }
-                });
+                    });
+            }else{
+                this.$notify(
+                    {
+                        text: "Campo preenchido incorretamente",
+                        type: "error",
+                    },
+                    3000
+                );
+            }
         },
         changePessoaCategoria (event) {
             console.log(event.target.options[event.target.options.selectedIndex].value);

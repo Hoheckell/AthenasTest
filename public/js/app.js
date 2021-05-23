@@ -1910,23 +1910,30 @@ __webpack_require__.r(__webpack_exports__);
     saveCategoria: function saveCategoria() {
       var _this = this;
 
-      this.axios.post('http://localhost:8000/api/categoria', this.categoria).then(function (response) {
-        if (response.status == 200) {
-          _this.$notify({
-            text: "Categoria adicionada com sucesso!",
-            type: "success"
-          }, 3000);
+      if (this.categoria.nome != undefined) {
+        this.axios.post('http://localhost:8000/api/categoria', this.categoria).then(function (response) {
+          if (response.status == 200) {
+            _this.$notify({
+              text: "Categoria adicionada com sucesso!",
+              type: "success"
+            }, 3000);
 
-          _this.$router.push({
-            name: 'categorias'
-          });
-        } else {
-          _this.$notify({
-            text: "Não foi possível concluir a inserção",
-            type: "error"
-          }, 3000);
-        }
-      });
+            _this.$router.push({
+              name: 'categorias'
+            });
+          } else {
+            _this.$notify({
+              text: "Não foi possível concluir a inserção",
+              type: "error"
+            }, 3000);
+          }
+        });
+      } else {
+        this.$notify({
+          text: "Campo preenchido incorretamente",
+          type: "error"
+        }, 3000);
+      }
     }
   }
 });
@@ -1993,23 +2000,30 @@ __webpack_require__.r(__webpack_exports__);
     updateCategoria: function updateCategoria(codigo) {
       var _this2 = this;
 
-      this.axios.patch('http://localhost:8000/api/categoria/' + codigo, this.categoria).then(function (response) {
-        if (response.status == 200) {
-          _this2.$notify({
-            text: "Categoria alterada com sucesso!",
-            type: "success"
-          }, 3000);
+      if (this.categoria.nome != undefined) {
+        this.axios.patch('http://localhost:8000/api/categoria/' + codigo, this.categoria).then(function (response) {
+          if (response.status == 200) {
+            _this2.$notify({
+              text: "Categoria alterada com sucesso!",
+              type: "success"
+            }, 3000);
 
-          _this2.$router.push({
-            name: 'categorias'
-          });
-        } else {
-          _this2.$notify({
-            text: "Não foi possível concluir a alteração",
-            type: "error"
-          }, 3000);
-        }
-      });
+            _this2.$router.push({
+              name: 'categorias'
+            });
+          } else {
+            _this2.$notify({
+              text: "Não foi possível concluir a alteração",
+              type: "error"
+            }, 3000);
+          }
+        });
+      } else {
+        this.$notify({
+          text: "Campo preenchido incorretamente",
+          type: "error"
+        }, 3000);
+      }
     }
   }
 });
@@ -2211,23 +2225,30 @@ __webpack_require__.r(__webpack_exports__);
     savePessoa: function savePessoa() {
       var _this2 = this;
 
-      this.axios.post('http://localhost:8000/api/pessoa', this.pessoa).then(function (response) {
-        if (response.status == 200) {
-          _this2.$notify({
-            text: "Pessoa adicionada com sucesso!",
-            type: "success"
-          }, 3000);
+      if (this.pessoa.nome != undefined && this.pessoa.nome != undefined && this.pessoa.categoria_codigo != undefined) {
+        this.axios.post('http://localhost:8000/api/pessoa', this.pessoa).then(function (response) {
+          if (response.status == 200) {
+            _this2.$notify({
+              text: "Pessoa adicionada com sucesso!",
+              type: "success"
+            }, 3000);
 
-          _this2.$router.push({
-            name: 'pessoas'
-          });
-        } else {
-          _this2.$notify({
-            text: "Não foi possível concluir a inserção",
-            type: "error"
-          }, 3000);
-        }
-      });
+            _this2.$router.push({
+              name: 'pessoas'
+            });
+          } else {
+            _this2.$notify({
+              text: "Não foi possível concluir a inserção",
+              type: "error"
+            }, 3000);
+          }
+        });
+      } else {
+        this.$notify({
+          text: "Campos preenchidos incorretamente",
+          type: "error"
+        }, 3000);
+      }
     },
     changePessoaCategoria: function changePessoaCategoria(event) {
       console.log(event.target.options[event.target.options.selectedIndex].value);
@@ -2314,23 +2335,30 @@ __webpack_require__.r(__webpack_exports__);
     updatePessoa: function updatePessoa(codigo) {
       var _this2 = this;
 
-      this.axios.patch('http://localhost:8000/api/pessoa/' + codigo, this.pessoa).then(function (response) {
-        if (response.status == 200) {
-          _this2.$router.push({
-            name: 'pessoas'
-          });
+      if (this.pessoa.nome != undefined && this.pessoa.nome != undefined && this.pessoa.categoria_codigo != undefined) {
+        this.axios.patch('http://localhost:8000/api/pessoa/' + codigo, this.pessoa).then(function (response) {
+          if (response.status == 200) {
+            _this2.$router.push({
+              name: 'pessoas'
+            });
 
-          _this2.$notify({
-            text: "Pessoa alterada com sucesso!",
-            type: "success"
-          }, 3000);
-        } else {
-          _this2.$notify({
-            text: "Não foi possível concluir a alteração",
-            type: "error"
-          }, 3000);
-        }
-      });
+            _this2.$notify({
+              text: "Pessoa alterada com sucesso!",
+              type: "success"
+            }, 3000);
+          } else {
+            _this2.$notify({
+              text: "Não foi possível concluir a alteração",
+              type: "error"
+            }, 3000);
+          }
+        });
+      } else {
+        this.$notify({
+          text: "Campo preenchido incorretamente",
+          type: "error"
+        }, 3000);
+      }
     },
     changePessoaCategoria: function changePessoaCategoria(event) {
       console.log(event.target.options[event.target.options.selectedIndex].value);
