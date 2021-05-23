@@ -12,6 +12,7 @@ import VueAxios from 'vue-axios';
 import VueRouter from 'vue-router';
 import axios from 'axios';
 import { routes } from './routes';
+import Notifications from 'vue-notification';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -21,6 +22,7 @@ import { routes } from './routes';
 
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
+Vue.use(Notifications);
 
 const router = new VueRouter({
     mode: 'history',

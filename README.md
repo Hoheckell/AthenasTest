@@ -3,7 +3,9 @@
 <h1>Teste CRUD</h1>
 <p>
 <h4>Instruções</h4>
-Após clonar o projeto executar os comandos a seguir.
+Após clonar o projeto: .
+Criar um Arquivo <a href="https://laravel.com/docs/8.x/configuration#environment-configuration">.env</a> padrão do <a href="http://laravel.com">Laravel</a> adicionar as informações de acesso do banco de dados.
+Executar os comandos a seguir.
 </p>
 <p>
 <h4>Comandos</h4>

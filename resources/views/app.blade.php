@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
 
         <body class="bg-dark text-white">
+
     <div id="app"></div>
     </body>
 </html>

@@ -16,25 +16,37 @@ class CategoriaController extends Controller
 
     public function store(Request $request){
 
-        $request->validate([
+        try{
+            $request->validate([
             'nome' => 'required',
-        ]);
-        $categoria = Categoria::create([
-            'nome'=>$request->nome
-        ]);
-        return response()->json($categoria);
+            ]);
+            Categoria::create([
+                'nome'=>$request->nome
+            ]);
+            return response()->status(200);
+        }catch (\Exception $e){
+            Log::error($e->getMessage().' '.$e->getFile()." ".$e->getLine());
+            return response($e->getMessage())->status(400);
+        }
     }
+
     public function update($codigo,Request $request){
 
-        $request->validate([
-            'nome' => 'required',
-        ]);
-        $categoria = Categoria::find($codigo);
-        $categoria->nome = $request->nome;
-        $categoria->save();
-        return response()->json($categoria);
+        try{
+            $request->validate([
+                'nome' => 'required',
+            ]);
+            $categoria = Categoria::find($codigo);
+            $categoria->nome = $request->nome;
+            $categoria->save();
+            return response()->status(200);
+        }catch (\Exception $e){
+            Log::error($e->getMessage().' '.$e->getFile()." ".$e->getLine());
+            return response($e->getMessage())->status(400);
+        }
     }
-    public function delete($codigo){
+
+    public function destroy($codigo){
 
         if(!empty($codigo)){
             try{

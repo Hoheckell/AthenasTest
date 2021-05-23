@@ -1,66 +1,30 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card bg-dark">
-                    <div class="card-header text-white">Pessoas</div>
-
-                    <div class="card-body">
-                        <table class="table table-dark">
-                        <thead>
-                        <tr>
-                            <th>Codigo</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Categoria</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr v-for="pessoa in pessoas" :key="pessoa.id">
-                            <td>{{ pessoa.codigo }}</td>
-                            <td>{{ pessoa.nome }}</td>
-                            <td>{{ pessoa.email }}</td>
-                            <td>{{ pessoa.categoria.nome }}</td>
-                            <td>
-                                <div class="btn-group" role="group">
-                                    <router-link :to="{name: 'editpessoa', params: { codigo: pessoa.codigo }}" class="btn btn-success">Edit</router-link>
-                                    <button class="btn btn-danger" @click="deletePessoa(pessoa.codigo)">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                    </div>
-                </div>
+            <div class="col-12">
+                <h1>Teste Admissional</h1>
+                <p>
+                    Um bom dia, O conteúdo a ser testado está acessível nos links acima.<br>
+                    Deixo aqui algumas reflexões.<br>
+                </p>
+                <p>
+                    <cite class="text-info"><q>
+                        A vida se contrai e se expande proporcionalmente à coragem do indivíduo.
+                    </q></cite><br>
+                    Anaïs Nin (1903-1977)
+                        <br><a href="https://pt.wikipedia.org/wiki/Ana%C3%AFs_Nin">Wikipedia</a>
+                </p>
+                <p>
+                    <cite class="text-info"><q>
+                        O mais importante não é onde você está, mas sim a direção para a qual está se movendo.
+                    </q></cite><br>
+                        Oliver Wendell Holmes (1841-1935)
+                        <br><a href="https://pt.wikipedia.org/wiki/Oliver_Wendell_Holmes">Wikipedia</a>
+                </p>
             </div>
         </div>
     </div>
 </template>
-
 <script>
-export default {
-    data() {
-        return {
-            pessoas: []
-        }
-    },
-    created() {
-        this.axios
-            .get( 'http://localhost:8000/api/pessoa/')
-            .then(response => {
-                this.pessoas = response.data;
-            });
-    },
-    methods: {
-        deletePessoa(id) {
-            this.axios
-                .delete('http://localhost:8000/api/pessoa/'+id)
-                .then(response => {
-                    let i = this.pessoas.map(data => data.id).indexOf(id);
-                    this.pessoas.splice(i, 1)
-                });
-        }
-    }
-}
+export default {}
 </script>
