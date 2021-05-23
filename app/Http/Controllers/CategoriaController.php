@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Log;
 class CategoriaController extends Controller
 {
     public function index(){
-        $categorias = Categoria::get();
-        return response()->json($categorias);
+        $categorias = Categoria::paginate(5);
+        return response()->json($categorias,200);
     }
 
     public function store(Request $request){

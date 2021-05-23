@@ -46,28 +46,38 @@ export default {
     },
     methods: {
         updateCategoria(codigo) {
-            this.axios
-                .patch('http://localhost:8000/api/categoria/'+codigo,this.categoria)
-                .then(response => {
-                    if(response.status == 200){
-                        this.$notify(
-                            {
-                                text: "Categoria alterada com sucesso!",
-                                type: "success",
-                            },
-                            3000
-                        );
-                        this.$router.push({ name: 'categorias' });
-                    }else{
-                        this.$notify(
-                            {
-                                text: "Não foi possível concluir a alteração",
-                                type: "error",
-                            },
-                            3000
-                        );
-                    }
-                });
+            if (this.categoria.nome != undefined) {
+                this.axios
+                    .patch('http://localhost:8000/api/categoria/' + codigo, this.categoria)
+                    .then(response => {
+                        if (response.status == 200) {
+                            this.$notify(
+                                {
+                                    text: "Categoria alterada com sucesso!",
+                                    type: "success",
+                                },
+                                3000
+                            );
+                            this.$router.push({name: 'categorias'});
+                        } else {
+                            this.$notify(
+                                {
+                                    text: "Não foi possível concluir a alteração",
+                                    type: "error",
+                                },
+                                3000
+                            );
+                        }
+                    });
+            } else {
+                this.$notify(
+                    {
+                        text: "Campo preenchido incorretamente",
+                        type: "error",
+                    },
+                    3000
+                );
+            }
         }
     }
 }

@@ -43,33 +43,43 @@ export default {
         this.axios
             .get('http://localhost:8000/api/categoria')
             .then(response => {
-                this.categorias=response.data
+                this.categorias=response.data.data
             });
     },
     methods: {
         savePessoa() {
-            this.axios
-                .post('http://localhost:8000/api/pessoa',this.pessoa)
-                .then(response => {
-                    if(response.status == 200){
-                        this.$notify(
-                            {
-                                text: "Pessoa adicionada com sucesso!",
-                                type: "success",
-                            },
-                            3000
-                        );
-                        this.$router.push({ name: 'pessoas' })
-                    }else{
-                        this.$notify(
-                            {
-                                text: "Não foi possível concluir a inserção",
-                                type: "error",
-                            },
-                            3000
-                        );
-                    }
-                });
+            if(this.pessoa.nome != undefined && this.pessoa.nome != undefined && this.pessoa.categoria_codigo != undefined) {
+                this.axios
+                    .post('http://localhost:8000/api/pessoa', this.pessoa)
+                    .then(response => {
+                        if (response.status == 200) {
+                            this.$notify(
+                                {
+                                    text: "Pessoa adicionada com sucesso!",
+                                    type: "success",
+                                },
+                                3000
+                            );
+                            this.$router.push({name: 'pessoas'})
+                        } else {
+                            this.$notify(
+                                {
+                                    text: "Não foi possível concluir a inserção",
+                                    type: "error",
+                                },
+                                3000
+                            );
+                        }
+                    });
+            }else{
+                this.$notify(
+                    {
+                        text: "Campos preenchidos incorretamente",
+                        type: "error",
+                    },
+                    3000
+                );
+            }
         },
         changePessoaCategoria (event) {
             console.log(event.target.options[event.target.options.selectedIndex].value);

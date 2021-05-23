@@ -23,7 +23,7 @@ import Notifications from 'vue-notification';
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(Notifications);
-
+Vue.component('pagination', require('laravel-vue-pagination'));
 const router = new VueRouter({
     mode: 'history',
     routes: routes

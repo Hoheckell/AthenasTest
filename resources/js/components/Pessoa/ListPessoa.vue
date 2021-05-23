@@ -31,26 +31,26 @@
                         </tr>
                         </tbody>
                     </table>
+                        <pagination :data="pagination" @pagination-change-page="getResults">
+                            <span slot="prev-nav">&lt; Anterior</span>
+                            <span slot="next-nav">Próxima &gt;</span>
+                        </pagination>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
-
 <script>
 export default {
     data() {
         return {
-            pessoas: []
+            pessoas: {},
+            pagination: {}
         }
     },
-    created() {
-        this.axios
-            .get( 'http://localhost:8000/api/pessoa/')
-            .then(response => {
-                this.pessoas = response.data;
-            });
+    mounted() {
+        this.getResults();
     },
     methods: {
         deletePessoa(codigo) {
@@ -76,6 +76,14 @@ export default {
                             3000
                         );
                     }
+                });
+        },
+        getResults(page = 1) {
+            this.axios
+                .get( 'http://localhost:8000/api/pessoa?page=' + page)
+                .then(response => {
+                    this.pessoas = response.data.data;
+                    this.pagination = response.data;
                 });
         }
     }

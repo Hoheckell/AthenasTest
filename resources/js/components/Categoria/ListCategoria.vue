@@ -27,6 +27,10 @@
                             </tr>
                             </tbody>
                         </table>
+                        <pagination :data="pagination" @pagination-change-page="getResults">
+                            <span slot="prev-nav">&lt; Anterior</span>
+                            <span slot="next-nav">Próxima &gt;</span>
+                        </pagination>
                     </div>
                 </div>
             </div>
@@ -38,15 +42,12 @@
 export default {
     data() {
         return {
-            categorias: []
+            categorias: [],
+            pagination:{}
         }
     },
-    created() {
-        this.axios
-            .get( 'http://localhost:8000/api/categoria/')
-            .then(response => {
-                this.categorias = response.data;
-            });
+    mounted() {
+        this.getResults();
     },
     methods: {
         deleteCategoria(codigo) {
@@ -73,6 +74,14 @@ export default {
                             3000
                         );
                     }
+                });
+        },
+        getResults(page = 1) {
+            this.axios
+                .get( 'http://localhost:8000/api/categoria?page=' + page)
+                .then(response => {
+                    this.categorias = response.data.data;
+                    this.pagination = response.data;
                 });
         }
     }

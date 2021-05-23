@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Log;
 class PessoaController extends Controller
 {
     public function index(){
-        $pessoas = Pessoa::with('categoria')->get();
-        return response()->json($pessoas);
+        $pessoas = Pessoa::with('categoria')->paginate(5);
+        return response()->json($pessoas,200);
     }
     public function store(Request $request){
 
